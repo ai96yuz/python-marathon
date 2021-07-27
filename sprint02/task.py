@@ -17,9 +17,9 @@ def double_string(data):
 
 def morse_number(words):
     answer = ''
-    data = {'1.----', '2..---', '3...--', '4....-', '5.....', '6-....', '7--...', '8---..', '9----.', '0-----'}
+    data = '1.---- 2..--- 3...-- 4....- 5..... 6-.... 7--... 8---.. 9----. 0-----'
     for el in words:
-        for i in data:
+        for i in data.split():
             if el == i[0]:
                 if answer == '':
                     answer = i[1:6]
