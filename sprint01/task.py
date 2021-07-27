@@ -6,8 +6,8 @@ def kthTerm(n, k):
     while len(resultList) <= k:
         step += 1
         resultList.append(n ** step)
-        lenght = len(resultList) - 1
-        for i in range(0, lenght, 1):
+        length = len(resultList) - 1
+        for i in range(0, length, 1):
             resultList.append(n ** step + resultList[i])
     return resultList[k - 1]
 
