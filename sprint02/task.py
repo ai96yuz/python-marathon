@@ -47,11 +47,6 @@ def figure_perimetr(data):
     return float("{0:.14f}".format(answer))
 
 
-# test1 = "#LB1:1#RB4:1#LT1:3#RT4:3"
-# print(figure_perimetr(test1))
-# test2 = "#LB0:1#RB5:1#LT4:5#RT8:3"
-# print(figure_perimetr(test2))
-
 # Task 4
 
 
@@ -59,30 +54,7 @@ import re
 
 
 def pretty_message(data):
-    # e = re.sub(r'(\w)\1{1:}', '', data)
-
-    word = data.split(' ')
-    for i in word:
-        # x = re.split(r'(\w)(\w)(\w)\1\2\3\w +', i)
-        # x = re.sub(r'(\w)\1{1:}', i)
-        # print(x)
-        for x in i:
-            if x == x in i:
-                i.replace(x, '')
-
-        # if word.count(i) > 1:
-        #     word.remove(i)
-    return word
-    # x = re.findall('a-z | a-z', txt)
-    # print(x)
-    # for el in data:
-    #     if el == el + el:
-    #         data.replace(el, '')
-    # return data
-
-
-# data = "Thisssssssss isisisis echooooooo stringggg. Replaceaceaceace repeatedededed groupssss of symbolssss"
-# print(pretty_message(data))
+    return (re.sub(r'([a-z]+?)\1+', r'\1', data))
 
 
 # Task 5
