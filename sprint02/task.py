@@ -21,11 +21,8 @@ def morse_number(words):
     for el in words:
         for i in data.split():
             if el == i[0]:
-                if answer == '':
-                    answer = i[1:6]
-                else:
-                    answer = answer + ' ' + i[1:6]
-    return answer
+                answer = answer + ' ' + i[1:6]
+    return answer[1:]
 
 
 # Task 3
