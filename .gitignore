@@ -1,3 +1,7 @@
-host-secrets.txt
 venv
 .idea
+host-secrets.txt
+sprint01/condition.py
+sprint02/condition.py
+sprint03/condition.py
+
