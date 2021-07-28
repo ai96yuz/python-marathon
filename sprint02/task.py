@@ -29,28 +29,22 @@ def morse_number(words):
 
 
 # Task 3
-import math
+import re
+from math import sqrt
+
 
 
 def figure_perimetr(data):
-    x = []
-    a = data.split('#')
-    for el in a:
-        if el == '':
-            continue
-        else:
-            x.append(el)
-    print(x)
-    x1, y1, x2, y2 = int(x[0][-1]), int(x[1][-1]), int(x[2][-1]), int(x[3][-1])
-    print('x1, y1, x2, y2: ', x1, y1, x2, y2)
-    a = (x2 - x1) ** 2
-    print('(x2 - x1) ** 2: ', a)
-    b = (y2 - y1) ** 2
-    print('(y2 - y1) ** 2: ', b)
-    print('{} + {}: '.format(a, b), a + b)
-    print('math.sqrt({}): '.format(a + b), math.sqrt(a + b))
+    coords = re.findall(r'\d*\d', data)
+    coords = [int(el) for el in coords]
 
-    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    AB = sqrt((coords[2] - coords[0]) ** 2 + (coords[3] - coords[1]) ** 2)
+    AC = sqrt((coords[4] - coords[0]) ** 2 + (coords[5] - coords[1]) ** 2)
+    CD = sqrt((coords[6] - coords[4]) ** 2 + (coords[7] - coords[5]) ** 2)
+    BD = sqrt((coords[6] - coords[2]) ** 2 + (coords[7] - coords[3]) ** 2)
+
+    answer = AB + AC + CD + BD
+    return float("{0:.14f}".format(answer))
 
 
 # test1 = "#LB1:1#RB4:1#LT1:3#RT4:3"
