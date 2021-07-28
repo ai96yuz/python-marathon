@@ -15,16 +15,31 @@ def double_string(data):
 # Task 2
 
 
-def morse_number(words):
+def morse_number(data):
     answer = ''
-    data = '1.---- 2..--- 3...-- 4....- 5..... 6-.... 7--... 8---.. 9----. 0-----'
-    for el in words:
-        for i in data.split():
-            if el == i[0]:
-                answer = answer + ' ' + i[1:6]
-    return answer[1:]
+    code = '-----'
+    for el in data:
+        el = int(el)
+        if 1 <= el <= 5:
+            code = code.replace('-' * el, '.' * el, 1)
+        elif 6 <= el <= 9:
+            code = '.....'
+            code = code.replace('.' * (el - 5), '-' * (el - 5), 1)
+        answer += ' ' + code
+    return answer.strip()
+
+    # Other example of current task
+    #
+    # answer = ''
+    # data = '1.---- 2..--- 3...-- 4....- 5..... 6-.... 7--... 8---.. 9----. 0-----'
+    # for el in words:
+    #     for i in data.split():
+    #         if el == i[0]:
+    #             answer = answer + ' ' + i[1:6]
+    # return answer[1:]
 
 
+print(morse_number("295"))
 # Task 3
 
 
