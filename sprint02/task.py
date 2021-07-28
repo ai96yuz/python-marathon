@@ -29,21 +29,20 @@ def morse_number(words):
 
 
 # Task 3
+
+
 import re
 from math import sqrt
 
 
-
 def figure_perimetr(data):
-    coords = re.findall(r'\d*\d', data)
-    coords = [int(el) for el in coords]
+    data = re.findall(r'\d*\d', data)
+    data = [int(el) for el in data]
+    answer = sqrt((data[2] - data[0]) ** 2 + (data[3] - data[1]) ** 2) + \
+             sqrt((data[4] - data[0]) ** 2 + (data[5] - data[1]) ** 2) + \
+             sqrt((data[6] - data[4]) ** 2 + (data[7] - data[5]) ** 2) + \
+             sqrt((data[6] - data[2]) ** 2 + (data[7] - data[3]) ** 2)
 
-    AB = sqrt((coords[2] - coords[0]) ** 2 + (coords[3] - coords[1]) ** 2)
-    AC = sqrt((coords[4] - coords[0]) ** 2 + (coords[5] - coords[1]) ** 2)
-    CD = sqrt((coords[6] - coords[4]) ** 2 + (coords[7] - coords[5]) ** 2)
-    BD = sqrt((coords[6] - coords[2]) ** 2 + (coords[7] - coords[3]) ** 2)
-
-    answer = AB + AC + CD + BD
     return float("{0:.14f}".format(answer))
 
 
@@ -58,29 +57,14 @@ def pretty_message(data):
 
 
 # Task 5
+
+
 import re
 
 
 def max_population(data):
-    info = []
-    population = []
-    result = ()
-
-    for el in data:
-        try:
-            a = re.search(r'[a-z]{2}(_)[a-z]*(,)\d*', el).group()
-        except AttributeError:
-            a = re.search(r'[a-z]{2}(_)[a-z]*(,)\d*', el)
-        if a is None:
-            continue
-        else:
-            info.append(a)
-
-    for i in info:
-        b = re.search(r'\d{5}', i).group()
-        population.append(b)
-
-    if max(population) in info[0]:
-        result = info[0][0:-6], int(max(population))
-
-    return result
+    items = re.findall(r'([a-z]{2}_[a-z]+),(\d+)', ' '.join(data))
+    capital = [el[1] for el in items]
+    for item in items:
+        if max(capital) in item[1]:
+            return item[0], int(max(capital))
