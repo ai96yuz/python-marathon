@@ -54,7 +54,7 @@ import re
 
 
 def pretty_message(data):
-    return (re.sub(r'([a-z]+?)\1+', r'\1', data))
+    return re.sub(r'([a-z]+?)\1+', r'\1', data)
 
 
 # Task 5
