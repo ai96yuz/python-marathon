@@ -18,38 +18,38 @@ def create(name):
 import re
 
 
-def create_account(user_name: str, password: str, secret_words: list):
-    req_pass = re.findall(r'(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}', password)
+def create_account(user_name, password, secret_words):
+    password_regular = re.compile(r'(?=.*[0-9])(?=.*[!@#$%^&_*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&_*]{6,}')
+    password_checker = bool(re.search(password_regular, password))
 
-    print(req_pass)
+    def check(password_check, secret_words_check):
+        if password != password_check:
+            return False
+        secret_checker = []
+        secret_copy = secret_words.copy()
+        for word in secret_words_check:
+            for item in secret_copy:
+                if word == item:
+                    secret_checker.append(word)
+                    secret_copy[secret_copy.index(item)] = ""
+                    break
+        if len(secret_words) != len(secret_words_check):
+            return False
+        elif len(secret_checker) >= len(secret_words) - 1:
+            return True
+        elif len(secret_checker) < len(secret_words) - 1:
+            return False
 
-    # def check():
-
-    # def check(user_login, user_password, user_secret):
-    #     if not user_login, user_password, user_secret:
-    #         user_login = user_name
-    #         user_password = password
-    #         user_secret = secret_words
-
-    #     if user_name == user_login:
-    #         yield
-    #         name = user_name
-    #         yield name
+    if not password_checker:
+        raise ValueError
+    return check
 
 
-# def create_account(user_name: str, password: str, secret_words: list):
-#     name = user_name
-#     pin = password
-#     word = secret_words
-#
-#     def check():
-#         try:
-#             if name == user_name and pin == password and word == secret_words:
-#                 return name, pin, word
-#         except ValueError:
-#             print('ValueError')
-#
-#     return check
+tom = create_account("Tom", "Qwerty1_", ["1", "word"])
+check1 = tom("Qwerty1_", ["1", "word"])
+check2 = tom("Qwerty1_", ["word"])
+check3 = tom("Qwerty1_", ["word", "2"])
+check4 = tom("Qwerty1!", ["word", "12"])
 
 
 # Task 4
@@ -61,6 +61,9 @@ def divisor(num):
             yield x
     while True:
         yield None
+
+
+#       not completed
 
 
 # Task 5
