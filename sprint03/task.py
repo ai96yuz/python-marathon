@@ -22,6 +22,9 @@ def create_account(user_name, password, secret_words):
     password_regular = re.compile(r'(?=.*[0-9])(?=.*[!@#$%^&_*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&_*]{6,}')
     password_checker = bool(re.search(password_regular, password))
 
+    if not password_checker:
+        raise ValueError
+
     def check(password_check, secret_words_check):
         if password != password_check:
             return False
@@ -39,9 +42,6 @@ def create_account(user_name, password, secret_words):
             return True
         elif len(secret_checker) < len(secret_words) - 1:
             return False
-
-    if not password_checker:
-        raise ValueError
     return check
 
 
@@ -63,29 +63,25 @@ def divisor(num):
         yield None
 
 
-#       not completed
-
-
 # Task 5
 
 
 def logger(func):
-    def concat(*args, **kwargs):
-        value = ','.join(func(*args, **kwargs))
-        return value
-
-    return concat
-
-
-# def logger(func):
-#     def concat(*args, **kwargs):
-#         return_value = func(*args, **kwargs)
-#         return return_value
-#     return concat
-
-@logger
-def sum(a, b):
-    return a + b
+    def info(*args, **kwargs):
+        func_result = func(*args, **kwargs)
+        result = [f"Executing of function {func.__name__} with arguments"]
+        if args and kwargs:
+            args = [str(item) for item in args]
+            kwargs = [str(item) for item in kwargs.values()]
+            args.extend(kwargs)
+            result.append(f"{', '.join(args)}")
+        elif args:
+            result.append(f"{', '.join({str(item) for item in args})}")
+        elif kwargs:
+            result.append(f"{', '.join({str(item) for item in kwargs.values()})}")
+        print(f"{' '.join(result)}...")
+        return func_result
+    return info
 
 
 @logger
@@ -93,19 +89,31 @@ def print_arg(arg):
     print(arg)
 
 
+@logger
+def sum(a, b):
+    return a+b
+
+
+@logger
+def concat(*a, **kwa):
+    a = list([str(item) for item in a])
+    a.extend([str(item) for item in kwa.values()])
+    return "".join(a)
+
+
 # Task 6
 from copy import deepcopy
 from random import choice
 
 
-def randomWord(l):
-    if len(l) == 0:
+def randomWord(data):
+    copy = set(data.copy())
+    if len(data) == 0:
         while True:
             yield None
-    l_saved = deepcopy(l)
     while True:
-        x = choice(l)
-        yield x
-        l.remove(x)
-        if len(l) == 0:
-            l = deepcopy(l_saved)
+        element = choice(data)
+        print(element)
+        yield element
+        if len(data) == 0:
+            data = copy
