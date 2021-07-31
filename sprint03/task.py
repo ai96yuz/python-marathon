@@ -66,54 +66,57 @@ def divisor(num):
 # Task 5
 
 
-def logger(func):
-    def info(*args, **kwargs):
-        func_result = func(*args, **kwargs)
-        result = [f"Executing of function {func.__name__} with arguments"]
-        if args and kwargs:
-            args = [str(item) for item in args]
-            kwargs = [str(item) for item in kwargs.values()]
-            args.extend(kwargs)
-            result.append(f"{', '.join(args)}")
-        elif args:
-            result.append(f"{', '.join({str(item) for item in args})}")
-        elif kwargs:
-            result.append(f"{', '.join({str(item) for item in kwargs.values()})}")
-        print(f"{' '.join(result)}...")
-        return func_result
-    return info
+def logger(funcDecorator):
+    def wrapper(*args, **kwargs):
+        data = ''
+        print('Executing of function ' + funcDecorator.__name__ + ' with arguments ', end='')
+        for arg in args:
+            data += str(arg) + ", "
+        for kwarg in kwargs.values():
+            data += str(kwarg) + ", "
+        print(data[:-2] + "...")
+        return funcDecorator(*args, **kwargs)
+
+    return wrapper
 
 
 @logger
-def print_arg(arg):
-    print(arg)
+def concat(*args, **kwargs):
+    data = ''
+    for arg in args:
+        data = data + str(arg)
+    for kwarg in kwargs.values():
+        data += str(kwarg)
+    return data
 
 
 @logger
 def sum(a, b):
-    return a+b
+    return a + b
 
 
-@logger
-def concat(*a, **kwa):
-    a = list([str(item) for item in a])
-    a.extend([str(item) for item in kwa.values()])
-    return "".join(a)
+def print_arg(arg):
+    print(arg)
+
+    @logger
+    def print_arg(arg):  # имя не совпадало )))
+        pass
+
+    print_arg(arg)
 
 
 # Task 6
-from copy import deepcopy
 from random import choice
 
 
 def randomWord(data):
-    copy = set(data.copy())
     if len(data) == 0:
         while True:
             yield None
+    data_saved = data.copy()
     while True:
-        element = choice(data)
-        print(element)
-        yield element
-        if len(data) == 0:
-            data = copy
+        el = choice(data_saved)
+        yield el
+        data_saved.remove(el)
+        if len(data_saved) == 0:
+            data_saved = data.copy()
