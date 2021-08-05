@@ -13,10 +13,8 @@ def check_number_group(number):
     try:
         if isinstance(number, str):
             number = int(number)
-
         if number > 10:
             return 'Number of your group {} is valid'.format(number)
-
         if -10 < number <= 10:
             raise ToSmallNumberGroupError('Number of your group can\'t be less than 10')
     except ToSmallNumberGroupError as e:
@@ -28,7 +26,20 @@ def check_number_group(number):
 # Task 2
 
 
-# ....
+import cmath
+
+def solve_quadric_equation(a, b, c):
+    try:
+        if a == 0:
+            return 'Zero Division Error'
+        a, b, c = float(a), float(b), float(c)
+        discriminant = (b**2 - 4*a*c)
+        if discriminant:
+            x1 = complex(-b - discriminant ** 0.5) / (2 * a)
+            x2 = complex(-b + discriminant ** 0.5) / (2 * a)
+            return 'The solution are x1={} and x2={}'.format(str(x1), str(x2))
+    except:
+        return 'Could not convert string to float'
 
 
 # Task 3
@@ -44,7 +55,6 @@ def valid_email(txt):
             return 'Email is not valid'
         if validator:
             return 'Email is valid'
-
     except:
         return 'Email is not valid'
 
@@ -78,3 +88,46 @@ def divide(numerator, denominator):
 # Task 6
 
 
+def day_of_week(day):
+    week = {
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wednesday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday',
+        7: 'Sunday'
+    }
+    try:
+        for key, value in week.items():
+            if int(day) == key:
+                return value
+        if day not in range(1, 7):
+            return 'There is no such day of the week! Please try again.'
+    except:
+        return 'You did not enter a number! Please try again.'
+
+
+# Task 7
+
+
+class MyError(Exception):
+    def __init__(self, number):
+        self.number = number
+
+    def __str__(self):
+        return repr(self.number)
+
+
+def check_positive(number):
+    try:
+        if isinstance(number, str):
+            number = int(number)
+        if number >= 0:
+            return 'You input positive number: {}'.format(float(number))
+        if number < 0:
+            raise MyError('{}. Try again.'.format(float(number)))
+    except MyError as e:
+        return 'You input negative number: ' + e.number
+    except:
+        return 'Error type: ValueError!'
