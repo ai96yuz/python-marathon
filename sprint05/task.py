@@ -28,6 +28,9 @@ def check_number_group(number):
 # Task 2
 
 
+# ....
+
+
 # Task 3
 
 import re
@@ -56,3 +59,22 @@ def check_odd_even(num):
             return 'Entered number is odd'
     except:
         return 'You entered not a number.'
+
+
+# Task 5
+
+
+def divide(numerator, denominator):
+    try:
+        if denominator == 0:
+            return 'Oops, {}/{}, division by zero is error!!!'.format(numerator, denominator)
+        sum = numerator / denominator
+        if sum:
+            return 'Result is {}'.format(sum)
+    except:
+        return 'Value Error! You did not enter a number!'
+
+
+# Task 6
+
+
