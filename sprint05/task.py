@@ -34,10 +34,9 @@ def solve_quadric_equation(a, b, c):
             return 'Zero Division Error'
         a, b, c = float(a), float(b), float(c)
         discriminant = (b**2 - 4*a*c)
-        if discriminant:
-            x1 = complex(-b - discriminant ** 0.5) / (2 * a)
-            x2 = complex(-b + discriminant ** 0.5) / (2 * a)
-            return 'The solution are x1={} and x2={}'.format(str(x1), str(x2))
+        x1 = complex(-b - discriminant ** 0.5) / (2 * a)
+        x2 = complex(-b + discriminant ** 0.5) / (2 * a)
+        return 'The solution are x1={} and x2={}'.format(str(x1), str(x2))
     except:
         return 'Could not convert string to float'
 
@@ -46,15 +45,10 @@ def solve_quadric_equation(a, b, c):
 
 import re
 
-
 def valid_email(txt):
     validator = bool(re.search(r'^([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,})', txt))
-
     try:
-        if not validator:
-            return 'Email is not valid'
-        if validator:
-            return 'Email is valid'
+        return 'Email is valid' if validator else 'Email is not valid'
     except:
         return 'Email is not valid'
 
@@ -63,13 +57,9 @@ def valid_email(txt):
 
 def check_odd_even(num):
     try:
-        if (num % 2) == 0:
-            return 'Entered number is even'
-        else:
-            return 'Entered number is odd'
+        return 'Entered number is even' if (num % 2) == 0 else 'Entered number is odd'
     except:
         return 'You entered not a number.'
-
 
 # Task 5
 
@@ -79,8 +69,7 @@ def divide(numerator, denominator):
         if denominator == 0:
             return 'Oops, {}/{}, division by zero is error!!!'.format(numerator, denominator)
         sum = numerator / denominator
-        if sum:
-            return 'Result is {}'.format(sum)
+        return 'Result is {}'.format(sum)
     except:
         return 'Value Error! You did not enter a number!'
 
