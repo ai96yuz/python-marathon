@@ -2,9 +2,10 @@ venv
 .idea
 __pycache__
 host-secrets.txt
+sprint06/json
 sprint02/condition.py
 sprint03/condition.py
 sprint04/condition.py
 sprint05/condition.py
 sprint06/condition.py
-sprint06/json
+sprint07/condition.py
