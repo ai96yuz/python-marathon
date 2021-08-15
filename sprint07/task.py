@@ -1,4 +1,4 @@
-#       TASK 1
+# TASK 1
 
 
 from abc import ABC, abstractmethod
@@ -70,7 +70,7 @@ class FactoryProducer:
             return FrenchDishesFactory
 
 
-#       TASK 2
+# TASK 2
 
 
 class Goods:
@@ -99,7 +99,7 @@ def twenty_percent_discount(order):
     return order.price * 0.2
 
 
-#       TASK 3
+# TASK 3
 
 
 class MotorCycle:
@@ -154,7 +154,7 @@ class Adapter:
         return self.obj.__dict__
 
 
-#       TASK 4
+# TASK 4
 
 
 class Washing:
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     washingMachine.startWashing()
 
 
-#       TASK 5
+# TASK 5
 
 
 class LeafElement:
