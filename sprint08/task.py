@@ -26,8 +26,11 @@ class DivideTest(unittest.TestCase):
 import unittest
 import math
 
+discriminant = int()
+
 
 def quadratic_equation(a, b, c):
+    global discriminant
     discriminant = b ** 2 - 4 * a * c
 
     if a == 0:
@@ -44,7 +47,7 @@ def quadratic_equation(a, b, c):
 
 class QuadraticEquationTest(unittest.TestCase):
     def test_discriminant_positive(self):
-        self.assertTrue(discriminant > 0)
+        self.assertTrue(discriminant >= 0)
 
     def test_discriminant_negative(self):
         self.assertFalse(discriminant < 0)
@@ -53,9 +56,9 @@ class QuadraticEquationTest(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             discriminant // 0
 
-    def test_value_zero(self):
-        with self.assertRaises(ZeroDivisionError):
-            a == 0
+    def test_discriminant_regex(self):
+        with self.assertRaisesRegex(ValueError, 'literal'):
+            int('XYZ')
 
 
 # Task 4
