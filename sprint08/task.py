@@ -114,6 +114,8 @@ class QuadraticEquationTest(unittest.TestCase):
 
 
 
+
+
 # Task 5
 
 
@@ -161,3 +163,37 @@ class WorkerTest(unittest.TestCase):
 # Task 6
 
 
+import unittest
+import re
+
+
+def file_parser(*args):
+    calculator = 0
+    if len(args) > 2:
+        file_path = args[0]
+        find_str = args[1]
+        replaced_str = args[2]
+        # for line in file_read:
+        #     result = re.findall(find_str, line)
+        #     calculator += len(result)
+        # return f'Replased {calculator} strings'
+    else:
+        file_path = args[0]
+        find_str = args[1]
+        file_read = open(file_path)
+        for line in file_read:
+            result = re.findall(find_str, line)
+            calculator += len(result)
+        return f'Found {calculator} strings'
+
+
+class ParserTest(unittest.TestCase):
+    def setUp(self):
+        self.file_parser = file_parser('parser.txt', 'better')
+
+    def testResult(self):
+        self.assertEqual(self.file_parser, 'Found 8 strings')
+
+    @unittest.expectedFailure
+    def testFailure(self):
+        self.assertEqual(self.file_parser, 'Replased 8 strings')
