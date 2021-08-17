@@ -117,5 +117,47 @@ class QuadraticEquationTest(unittest.TestCase):
 # Task 5
 
 
+import unittest
+
+
+class Worker:
+    def __init__(self, name, salary=0):
+        self.name = name
+        self.salary = salary
+
+    def get_tax_value(self):
+        if self.salary < 0:
+            raise ValueError
+        elif self.salary <= 1000:
+            return 0.0
+        elif self.salary <= 3000:
+            return (self.salary - 1000) * 0.1
+        elif self.salary <= 5000:
+            return (3000 - 1000) * 0.1 + (self.salary - 3000) * 0.15
+        elif self.salary <= 10000:
+            return (3000 - 1000) * 0.1 + (5000 - 3000) * 0.15 + (self.salary - 5000) * 0.21
+        elif self.salary <= 20000:
+            return (3000 - 1000) * 0.1 + (5000 - 3000) * 0.15 + (10000 - 5000) * 0.21 + (self.salary - 10000) * 0.3
+        elif self.salary <= 50000:
+            return (3000 - 1000) * 0.1 + (5000 - 3000) * 0.15 + (10000 - 5000) * 0.21 + (20000 - 10000) * 0.3 + (
+                        self.salary - 20000) * 0.4
+        return (3000 - 1000) * 0.1 + (5000 - 3000) * 0.15 + (10000 - 5000) * 0.21 + (20000 - 10000) * 0.3 + (
+                    50000 - 20000) * 0.4 + (self.salary - 50000) * 0.47
+
+
+class WorkerTest(unittest.TestCase):
+    def setUp(self):
+        self.worker = Worker("Vika", 100000)
+        self.non_salary = Worker("Vasia")
+
+    def testResult(self):
+        self.assertEqual(self.worker.get_tax_value(), 40050.0)
+
+    @unittest.expectedFailure
+    def testNoneSalary(self):
+        self.assertEqual(self.non_salary.get_tax_value(), 0.1)
+
 
 # Task 6
+
+
