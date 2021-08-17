@@ -113,7 +113,67 @@ class QuadraticEquationTest(unittest.TestCase):
 # Task 4
 
 
+import unittest
+from math import sqrt
 
+
+class TriangleNotValidArgumentException(Exception):
+    pass
+
+class TriangleNotExistException(Exception):
+    pass
+
+class dopException(TriangleNotExistException):
+    pass
+
+class dopException2(TriangleNotValidArgumentException):
+    pass
+
+class Triangle:
+    def __init__(self,triangle):
+        ###validation of arguments
+        self.flag=True
+        try:
+            if type(triangle)!=tuple:
+                raise dopException2
+            else:
+                if len(triangle)!=3:
+                    raise dopException2
+                else:
+                    self.a, self.b, self.c = triangle[0], triangle[1], triangle[2]
+                    if type(self.a)!=int or type(self.b)!=int or type(self.c)!=int:
+                        raise dopException2
+        except TriangleNotValidArgumentException as e:
+            self.flag=False
+            print("Not valid arguments")
+
+         ####validation of existing triangle
+        if self.flag==True:
+            try:
+                if self.a + self.b > self.c and self.b + self.c > self.a and self.a + self.c > self.b:
+                    pass
+                else:
+                    raise dopException
+            except TriangleNotExistException as e:
+                print("Can`t create triangle with this arguments")
+
+    #get_area
+    def get_area(self):
+        if self.flag==True:
+            p=(self.a+self.b+self.c)/2
+            s=sqrt(p*(p-self.a)*(p-self.b)*(p-self.c))
+            return s
+
+class TriangleTest(unittest.TestCase):
+    def setUp(self):
+        self.not_valid_triangle = [
+            (1, 2, 3)]
+    def test_class(self):
+        self.assertEqual(type(Triangle),type)
+    def test_res(self):
+        self.assertNotEqual(TriangleNotValidArgumentException,TriangleNotExistException)
+    def test_smth(self):
+        self.assertLess(len(self.not_valid_triangle),2)
 
 
 # Task 5
