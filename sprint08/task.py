@@ -1,6 +1,55 @@
 # Task 1
 
 
+import unittest
+
+
+class Product:
+
+    def __init__(self, name, price, count):
+        self.name = name
+        self.price = price
+        self.count = count
+
+
+class Cart:
+
+    def __init__(self, *args):
+        self.data = args
+
+    def get_total_price(self):
+        total_price = 0
+        for item in self.data[0]:
+            discount = 0
+            if item.count > 20:
+                discount = item.price * 0.5
+            elif item.count == 20:
+                discount = item.price * 0.3
+            elif item.count >= 10:
+                discount = item.price * 0.2
+            elif item.count >= 7:
+                discount = item.price * 0.1
+            elif item.count >= 5:
+                discount = item.price * 0.05
+            total_price += item.count * (item.price - discount)
+        return total_price
+
+
+class CartTest(unittest.TestCase):
+
+    def setUp(self):
+        self.products = (Product('p1', 10, 4),
+                         Product('p2', 100, 5),
+                         Product('p3', 200, 6),
+                         Product('p4', 300, 7),
+                         Product('p5', 400, 9),
+                         Product('p6', 500, 10),
+                         Product('p7', 1000, 20))
+        self.cart = Cart(self.products)
+
+    def testResult(self):
+        self.assertEqual(self.cart.get_total_price(), 24785.0)
+
 
 # Task 2
 
