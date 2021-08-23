@@ -21,8 +21,7 @@ function combineArray(arr1, arr2) {
     // return answer
     arr1 = arr1.filter(item => typeof item === 'number');
     arr2 = arr2.filter(item => typeof item === 'number');
-    const arr = arr1.concat(arr2);
-    return arr;
+    return arr1.concat(arr2);
 }
 
 
@@ -55,25 +54,43 @@ function processArray(arr, factorial) {
 
 
 function checkAdult(age){
-    const complete = 'Age verification complete';
     if (!age) {
-        let answer = 'Error Please, enter your age';
-        console.log(answer);
+        console.log('Error Please, enter your age');
     } else if (Math.sign(age) < 0) {
-        let answer = 'Error Please, enter positive number';
-        console.log(answer);
+        console.log('Error Please, enter positive number');
     } else if (typeof age != 'number') {
-        let answer = 'Error Please, enter number';
-        console.log(answer);
+        console.log('Error Please, enter number');
     } else if (Number(age) === age && age % 1 !== 0) {
-        let answer = 'Error Please, enter Integer number';
-        console.log(answer);
+        console.log('Error Please, enter Integer number');
     } else if (age < 18) {
-        let answer = 'Error Access denied - you are too young!';
-        console.log(answer);
+        console.log('Error Access denied - you are too young!');
     } else if (age >= 18) {
-        let answer = 'Access allowed';
-        console.log(answer);
-    };
-    console.log(complete);
+        console.log('Access allowed');
+    }
+    console.log('Age verification complete');
 }
+
+
+// function checkAdult(age){
+//     const complete = 'Age verification complete';
+//     if (!age) {
+//         let answer = 'Error Please, enter your age';
+//         console.log(answer);
+//     } else if (Math.sign(age) < 0) {
+//         let answer = 'Error Please, enter positive number';
+//         console.log(answer);
+//     } else if (typeof age != 'number') {
+//         let answer = 'Error Please, enter number';
+//         console.log(answer);
+//     } else if (Number(age) === age && age % 1 !== 0) {
+//         let answer = 'Error Please, enter Integer number';
+//         console.log(answer);
+//     } else if (age < 18) {
+//         let answer = 'Error Access denied - you are too young!';
+//         console.log(answer);
+//     } else if (age >= 18) {
+//         let answer = 'Access allowed';
+//         console.log(answer);
+//     };
+//     console.log(complete);
+// }
