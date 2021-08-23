@@ -2,9 +2,9 @@
 
 
 function modifyArray(array) {
-  array[0] = 'Start'
-  array[array.length - 1] = 'End'
-  return array
+  array[0] = 'Start';
+  array[array.length - 1] = 'End';
+  return array;
 }
 
 
@@ -19,7 +19,6 @@ function combineArray(arr1, arr2) {
     //     return a.concat(b);
     // });
     // return answer
-
     arr1 = arr1.filter(item => typeof item === 'number');
     arr2 = arr2.filter(item => typeof item === 'number');
     const arr = arr1.concat(arr2);
@@ -75,6 +74,6 @@ function checkAdult(age){
     } else if (age >= 18) {
         let answer = 'Access allowed';
         console.log(answer);
-    }
+    };
     console.log(complete);
 }
