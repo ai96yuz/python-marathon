@@ -70,7 +70,6 @@ function checkAdult(age){
     console.log('Age verification complete');
 }
 
-
 // function checkAdult(age){
 //     const complete = 'Age verification complete';
 //     if (!age) {
