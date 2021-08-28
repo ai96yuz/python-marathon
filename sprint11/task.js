@@ -1,26 +1,17 @@
 // TASK 1
 
 
-const filterNums = (arr, val, condition) => {
-  var result = [];
-  for (let i = 0; i < arr.length; i = i + 1) {
-    if (val !== undefined) {
-      if (condition === undefined || condition == "greater") {
-        if (arr[i] > val) {
-          result.push(arr[i]);
+const filterNums = (arr, val = 0, condition = 'greater') => {
+    const result = []
+    for (let i=0; i < arr.length; i++) {
+        if ((condition === 'greater') && (arr[i] > val)) {
+            result.push(arr[i]);
         }
-      } else if (condition == "less") {
-        if (arr[i] < val) {
-          result.push(arr[i]);
+        else if ((condition === 'less') && (arr[i] < val)) {
+            result.push(arr[i]);
         }
-      }
-    } else {
-      if (arr[i] > 0) {
-        result.push(arr[i]);
-      }
     }
-  }
-  return result;
+    return result;
 };
 
 
@@ -36,10 +27,10 @@ const howMuchSec = (sec = 0, min = 0, hour = 0, day = 0, week = 0, month = 0, ye
 
 
 const maxInterv = (...arr) => {
-    return arr.slice(1).reduce(function (prev, current, index) {
-        return Math.max(Math.abs(arr[index] - current), prev);
-    }, 0);
-    // return Math.max(...Array(arr.length-1).fill().map((_,i) => Math.abs(arr[i]-arr[i+1])), 0);
+    return Math.max(...Array(arr.length-1).fill().map((_,i) => Math.abs(arr[i]-arr[i+1])), 0);
+    // return arr.slice(1).reduce(function (prev, current, index) {
+    //     return Math.max(Math.abs(arr[index] - current), prev);
+    // }, 0);
 }
 
 
