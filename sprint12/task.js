@@ -53,8 +53,8 @@ class Student {
         return this._fullName.includes(data) ? 'true' : 'false';
     }
 
-    static StudentBuilder(fullName, direction) {
-        return new Student(fullName, direction);
+    static studentBuilder(fullName, direction) {
+        return new Student('Ihor Kohut', 'qc');
     }
 
     get direction() {
@@ -68,7 +68,7 @@ class Student {
 
 const stud1 = new Student('Ivan Petrenko', 'web');
 const stud2 = new Student('Sergiy Koval', 'python');
-const stud3 = new Student('Ihor Kohut', 'qc');
+const stud3 = Student.studentBuilder();
 
 
 //  TASK 5
