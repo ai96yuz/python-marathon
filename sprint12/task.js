@@ -1,18 +1,29 @@
 //  TASK 1
 
+
 function getMin(arr) {
     return Math.min.apply(Math, arr)
-  //  arr.sort();
-  //  arr.join(', ');
-  //  arr.sort((a, b) => a-b);
-  //  return arr[0]
 }
+
 
 //  TASK 2
 
 
+const product = function() {
+    return [].reduce.call(arguments, function(res, elem) {
+        return res * elem;
+    }, this.product);
+};
+
+const contextObj = {
+    product: 10
+}
+
+const getProduct = product.bind(contextObj, 2, 3)
+
 
 //  TASK 3
+
 
 const Checker = require('./Checker.js');
 
@@ -35,6 +46,7 @@ const movie2 = new Movie('Troya', 'historical', 2004);
 
 
 //  TASK 4
+
 
 const Checker = require('./Checker.js');
 
@@ -72,6 +84,7 @@ const stud3 = Student.studentBuilder();
 
 
 //  TASK 5
+
 
 function mapCreator(keys, values) {
    const map = new Map();
