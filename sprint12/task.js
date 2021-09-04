@@ -62,7 +62,8 @@ class Student {
     }
 
     nameIncludes(data) {
-        return this._fullName.includes(data) ? 'true' : 'false';
+        const spliter = this.showFullName().split()
+        return spliter[0].includes(data) ? 'true' : 'false';
     }
 
     static studentBuilder(fullName, direction) {
@@ -88,10 +89,8 @@ const stud3 = Student.studentBuilder();
 
 function mapCreator(keys, values) {
    const map = new Map();
-   for(let i = 0; i < keys.length; i++) {
-       if (typeof values[i] === 'string') {
-           map.set(keys[i], values[i]);
-       }
+   if (keys.length == values.length){
+       values.filter(elem => typeof elem == 'string').forEach(element => map.set(keys[values.indexOf(element)], element));
+        return map;
    }
-   return map;
 }
